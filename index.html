@@ -19,7 +19,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== HEADER ===== */
         header {
             background: linear-gradient(135deg, #1e3a5f, #0d47a1);
             padding: 15px 25px;
@@ -108,7 +107,6 @@
             transform: translateY(-2px);
         }
 
-        /* ===== TELAS ===== */
         .screen {
             display: none;
             animation: fadeIn 0.4s ease;
@@ -123,7 +121,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== TELA DE BOAS-VINDAS ===== */
         .welcome-screen {
             display: flex;
             flex-direction: column;
@@ -180,7 +177,6 @@
             box-shadow: 0 12px 40px rgba(76, 175, 80, 0.6);
         }
 
-        /* ===== LAYOUT PRINCIPAL ===== */
         .main-layout {
             display: grid;
             grid-template-columns: 1fr 400px;
@@ -197,7 +193,6 @@
             }
         }
 
-        /* ===== ÁREA DE SCAN ===== */
         .scan-area {
             display: flex;
             flex-direction: column;
@@ -277,7 +272,6 @@
             box-shadow: 0 5px 20px rgba(21, 101, 192, 0.4);
         }
 
-        /* ===== MENSAGEM DE FEEDBACK ===== */
         .feedback-msg {
             margin-top: 12px;
             padding: 12px 16px;
@@ -317,7 +311,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== PRODUTOS RÁPIDOS ===== */
         .quick-products {
             background: #1a2332;
             border-radius: 16px;
@@ -383,7 +376,6 @@
             color: #4CAF50;
         }
 
-        /* ===== CARRINHO ===== */
         .cart-area {
             background: #1a2332;
             border-radius: 16px;
@@ -534,7 +526,6 @@
             text-align: right;
         }
 
-        /* ===== TOTAIS ===== */
         .cart-totals {
             padding: 16px 20px;
             border-top: 2px solid #2a3f5f;
@@ -609,7 +600,6 @@
             cursor: not-allowed;
         }
 
-        /* ===== MODAL ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -678,7 +668,6 @@
             padding: 24px;
         }
 
-        /* ===== PAGAMENTO ===== */
         .payment-total {
             text-align: center;
             padding: 20px;
@@ -746,7 +735,6 @@
             font-weight: 700;
         }
 
-        /* ===== PIX AREA ===== */
         .pix-area {
             text-align: center;
             padding: 20px;
@@ -791,7 +779,6 @@
             color: white;
         }
 
-        /* ===== DINHEIRO AREA ===== */
         .dinheiro-area {
             padding: 20px;
             background: #0f172a;
@@ -848,7 +835,6 @@
             color: #4CAF50;
         }
 
-        /* ===== CUPOM ===== */
         .receipt {
             background: white;
             color: #0f172a;
@@ -905,7 +891,6 @@
             color: #666;
         }
 
-        /* ===== BOTÕES MODAL ===== */
         .modal-actions {
             display: flex;
             gap: 12px;
@@ -968,7 +953,6 @@
             background: #3a4f6f;
         }
 
-        /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -984,11 +968,36 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #3a4f6f;
         }
+
+        /* ===== INDICADOR DE LEITOR ===== */
+        .reader-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+            padding: 4px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .reader-indicator .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4CAF50;
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
     <header>
         <div class="logo">
             <div class="logo-icon">F</div>
@@ -1004,11 +1013,14 @@
             <div class="info-item">
                 📅 <strong id="dataAtual">--/--/----</strong>
             </div>
+            <div class="reader-indicator">
+                <span class="dot"></span>
+                📷 Leitor ativo
+            </div>
             <button onclick="abrirAdmin()" class="btn-header">⚙️ Admin</button>
         </div>
     </header>
 
-    <!-- ===== TELA DE BOAS-VINDAS ===== -->
     <div id="screenWelcome" class="screen active">
         <div class="welcome-screen">
             <div class="icon">🛒</div>
@@ -1020,16 +1032,13 @@
         </div>
     </div>
 
-    <!-- ===== TELA PRINCIPAL ===== -->
     <div id="screenMain" class="screen">
         <div class="main-layout">
-
-            <!-- ÁREA DE SCAN -->
             <div class="scan-area">
                 <div class="scan-card" id="scanCard">
                     <h3>📷 Escaneie o código de barras</h3>
                     <div class="scan-input-group">
-                        <input type="text" id="barcodeInput" placeholder="Aguardando código de barras..." autocomplete="off">
+                        <input type="text" id="barcodeInput" placeholder="Aguardando leitura..." autocomplete="off">
                         <button onclick="buscarPorCodigo()">🔍 Buscar</button>
                     </div>
                     <div id="feedbackMsg" class="feedback-msg"></div>
@@ -1041,7 +1050,6 @@
                 </div>
             </div>
 
-            <!-- CARRINHO -->
             <div class="cart-area">
                 <div class="cart-header">
                     <h3>🛍️ Carrinho <span class="count" id="cartCount">0</span></h3>
@@ -1072,11 +1080,9 @@
                     <button onclick="abrirPagamento()" class="btn-finish" id="btnFinish" disabled>💳 Finalizar</button>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- ===== MODAL PAGAMENTO ===== -->
     <div id="modalPagamento" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -1108,7 +1114,6 @@
                     </div>
                 </div>
 
-                <!-- Área PIX -->
                 <div class="pix-area" id="pixArea">
                     <div class="qr" id="pixQr">
                         <img id="pixQrImg" src="" alt="QR Code Pix">
@@ -1117,7 +1122,6 @@
                     <p style="font-size:12px;color:#4a5f7f;">Escaneie o QR Code com o app do seu banco</p>
                 </div>
 
-                <!-- Área Dinheiro -->
                 <div class="dinheiro-area" id="dinheiroArea">
                     <label>Valor recebido (R$)</label>
                     <input type="number" id="valorRecebido" placeholder="0,00" step="0.01" min="0" oninput="calcularTroco()">
@@ -1135,7 +1139,6 @@
         </div>
     </div>
 
-    <!-- ===== MODAL CUPOM ===== -->
     <div id="modalCupom" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -1152,7 +1155,6 @@
         </div>
     </div>
 
-    <!-- ===== MODAL ADMIN ===== -->
     <div id="modalAdmin" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -1175,10 +1177,9 @@
 
     <script>
         // =============================================
-        // FESTVAL SELF-CHECKOUT
+        // FESTVAL SELF-CHECKOUT - COM DETECÇÃO AUTOMÁTICA
         // =============================================
 
-        // ===== CATÁLOGO DE PRODUTOS =====
         const PRODUTOS_PADRAO = [
             { barcode: '7891000053508', nome: 'Arroz 5kg', preco: 24.90, emoji: '🍚' },
             { barcode: '7891000244111', nome: 'Feijão 1kg', preco: 8.90, emoji: '🫘' },
@@ -1214,20 +1215,79 @@
             { barcode: '7891000160003', nome: 'Sorvete 2L', preco: 18.90, emoji: '🍦' }
         ];
 
-        // ===== ESTADO =====
         let carrinho = [];
         let produtos = [];
         let metodoPagamento = null;
         let ultimaCompra = null;
 
-        // ===== INICIALIZAÇÃO =====
+        // ===== DETECÇÃO AUTOMÁTICA DE LEITOR =====
+        let barcodeBuffer = '';
+        let lastKeyTime = 0;
+        const BARCODE_TIMEOUT = 50;
+
         document.addEventListener('DOMContentLoaded', function() {
             carregarProdutos();
             renderizarProdutosRapidos();
             atualizarHora();
             setInterval(atualizarHora, 1000);
             atualizarCarrinho();
+            iniciarDeteccaoLeitor();
         });
+
+        // ===== DETECÇÃO AUTOMÁTICA DO LEITOR DE CÓDIGO DE BARRAS =====
+        function iniciarDeteccaoLeitor() {
+            document.addEventListener('keydown', function(e) {
+                const activeElement = document.activeElement;
+                // Ignora se estiver digitando em um campo que não seja o de barcode
+                if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') 
+                    && activeElement.id !== 'barcodeInput') {
+                    return;
+                }
+
+                const now = Date.now();
+                const diff = now - lastKeyTime;
+                lastKeyTime = now;
+
+                // Teclas digitadas muito rápido = leitor de código de barras
+                if (diff < BARCODE_TIMEOUT && e.key.length === 1) {
+                    barcodeBuffer += e.key;
+                    e.preventDefault();
+                } 
+                // Enter = fim da leitura
+                else if (e.key === 'Enter' && barcodeBuffer.length > 0) {
+                    e.preventDefault();
+                    processarCodigoBarras(barcodeBuffer);
+                    barcodeBuffer = '';
+                }
+                // Se demorou muito, reinicia o buffer
+                else if (diff >= BARCODE_TIMEOUT && e.key.length === 1) {
+                    barcodeBuffer = e.key;
+                }
+            });
+        }
+
+        function processarCodigoBarras(codigo) {
+            const codigoLimpo = codigo.trim();
+            if (!codigoLimpo) return;
+
+            // Atualiza o campo visualmente
+            const input = document.getElementById('barcodeInput');
+            if (input) {
+                input.value = codigoLimpo;
+                // Efeito visual de "scan"
+                const scanCard = document.getElementById('scanCard');
+                if (scanCard) {
+                    scanCard.classList.add('scanning');
+                    setTimeout(() => scanCard.classList.remove('scanning'), 500);
+                }
+            }
+
+            adicionarPorBarcode(codigoLimpo);
+
+            setTimeout(() => {
+                if (input) input.value = '';
+            }, 1500);
+        }
 
         // ===== CARREGAR PRODUTOS =====
         function carregarProdutos() {
@@ -1251,7 +1311,6 @@
             } catch (e) {}
         }
 
-        // ===== HORA ATUAL =====
         function atualizarHora() {
             const agora = new Date();
             const hora = String(agora.getHours()).padStart(2, '0') + ':' + String(agora.getMinutes()).padStart(2, '0');
@@ -1260,14 +1319,12 @@
             document.getElementById('dataAtual').textContent = data;
         }
 
-        // ===== INICIAR COMPRA =====
         function iniciarCompra() {
             document.getElementById('screenWelcome').classList.remove('active');
             document.getElementById('screenMain').classList.add('active');
             setTimeout(() => document.getElementById('barcodeInput').focus(), 300);
         }
 
-        // ===== RENDERIZAR PRODUTOS RÁPIDOS =====
         function renderizarProdutosRapidos() {
             const grid = document.getElementById('productsGrid');
             const lista = produtos.slice(0, 20);
@@ -1280,7 +1337,6 @@
             `).join('');
         }
 
-        // ===== FEEDBACK =====
         function mostrarFeedback(msg, tipo) {
             const el = document.getElementById('feedbackMsg');
             el.textContent = msg;
@@ -1288,7 +1344,6 @@
             setTimeout(() => el.classList.remove('show'), 3000);
         }
 
-        // ===== BUSCAR POR CÓDIGO =====
         function buscarPorCodigo() {
             const input = document.getElementById('barcodeInput');
             const codigo = input.value.trim();
@@ -1302,6 +1357,7 @@
             const produto = produtos.find(p => p.barcode === barcode);
             if (!produto) {
                 mostrarFeedback(`❌ Produto não encontrado: ${barcode}`, 'error');
+                try { new Audio('data:audio/wav;base64,U3R1ZmZUdXJyAAAAAAIAAAADBAgGBwAAAAA=').play(); } catch(e) {}
                 return;
             }
 
@@ -1323,14 +1379,12 @@
             renderizarProdutosRapidos();
         }
 
-        // ===== ENTER NO CAMPO =====
         document.getElementById('barcodeInput').addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 buscarPorCodigo();
             }
         });
 
-        // ===== ATUALIZAR CARRINHO =====
         function atualizarCarrinho() {
             const container = document.getElementById('cartItems');
             const count = carrinho.reduce((acc, i) => acc + i.qtd, 0);
@@ -1364,14 +1418,12 @@
                 document.getElementById('btnFinish').disabled = false;
             }
 
-            // Totais
             const subtotal = carrinho.reduce((acc, i) => acc + (i.preco * i.qtd), 0);
             document.getElementById('subtotal').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
             document.getElementById('desconto').textContent = `R$ 0,00`;
             document.getElementById('total').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
         }
 
-        // ===== ALTERAR QUANTIDADE =====
         function alterarQtd(idx, delta) {
             if (!carrinho[idx]) return;
             carrinho[idx].qtd += delta;
@@ -1393,7 +1445,6 @@
             atualizarCarrinho();
         }
 
-        // ===== PAGAMENTO =====
         function abrirPagamento() {
             if (carrinho.length === 0) return;
             const total = carrinho.reduce((acc, i) => acc + (i.preco * i.qtd), 0);
@@ -1427,16 +1478,13 @@
             document.getElementById('btnConfirmar').disabled = false;
         }
 
-        // ===== QR CODE PIX =====
         function gerarQRCodePix(valor) {
-            // Gera QR Code com a chave Pix (simulado)
             const chave = 'festval@pagamentos.com.br';
             const dados = `PIX|${chave}|R$ ${valor.toFixed(2)}`;
             const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(dados)}`;
             document.getElementById('pixQrImg').src = qrUrl;
         }
 
-        // ===== CALCULAR TROCO =====
         function calcularTroco() {
             const total = carrinho.reduce((acc, i) => acc + (i.preco * i.qtd), 0);
             const recebido = parseFloat(document.getElementById('valorRecebido').value) || 0;
@@ -1448,7 +1496,6 @@
             document.getElementById('btnConfirmar').disabled = !(recebido >= total);
         }
 
-        // ===== CONFIRMAR PAGAMENTO =====
         function confirmarPagamento() {
             const total = carrinho.reduce((acc, i) => acc + (i.preco * i.qtd), 0);
 
@@ -1460,7 +1507,6 @@
                 }
             }
 
-            // Salva a compra
             ultimaCompra = {
                 itens: [...carrinho],
                 total: total,
@@ -1473,7 +1519,6 @@
             mostrarCupom();
         }
 
-        // ===== CUPOM =====
         function mostrarCupom() {
             const receipt = document.getElementById('receiptContent');
             const agora = new Date();
@@ -1560,7 +1605,6 @@
             document.getElementById('screenWelcome').classList.add('active');
         }
 
-        // ===== FECHAR MODAL =====
         function fecharModal(id) {
             document.getElementById(id).classList.remove('show');
         }
@@ -1571,7 +1615,6 @@
             });
         });
 
-        // ===== ADMIN =====
         function abrirAdmin() {
             document.getElementById('modalAdmin').classList.add('show');
         }
@@ -1604,7 +1647,7 @@
             alert('✅ Produto cadastrado com sucesso!');
         }
 
-        // ===== FOCAR NO INPUT AO ENTRAR NA TELA =====
+        // Mantém o foco no campo de barcode quando a tela principal está ativa
         document.addEventListener('click', function() {
             if (document.getElementById('screenMain').classList.contains('active')) {
                 const modalAberto = document.querySelector('.modal-overlay.show');
@@ -1614,8 +1657,9 @@
             }
         });
 
-        console.log('🛒 Festval Self-Checkout carregado!');
+        console.log('🛒 Festval Self-Checkout com detecção automática carregado!');
         console.log(`📦 ${produtos.length} produtos cadastrados`);
+        console.log('📷 Leitor de código de barras ativo - escaneie um produto!');
     </script>
 
 </body>
