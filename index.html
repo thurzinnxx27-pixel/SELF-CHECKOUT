@@ -19,6 +19,186 @@
             overflow-x: hidden;
         }
 
+        /* ===== LOGIN ===== */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(8px);
+        }
+
+        .login-overlay.hidden {
+            display: none;
+        }
+
+        .login-box {
+            background: #1a2332;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #2a3f5f;
+            max-width: 440px;
+            width: 100%;
+            animation: modalIn 0.4s ease;
+        }
+
+        .login-box .logo-icon {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .login-box .logo-icon .circle {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: 900;
+            color: #0d47a1;
+            box-shadow: 0 8px 30px rgba(100, 181, 246, 0.3);
+        }
+
+        .login-box h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 6px;
+            font-size: 26px;
+        }
+
+        .login-box .sub {
+            color: #90caf9;
+            text-align: center;
+            font-size: 13px;
+            margin-bottom: 24px;
+        }
+
+        .login-box .form-group {
+            padding: 0 0 14px 0;
+        }
+
+        .login-box .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #aaaacc;
+            margin-bottom: 6px;
+        }
+
+        .login-box .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: #0f172a;
+            border: 2px solid #2a3f5f;
+            border-radius: 10px;
+            color: white;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .login-box .form-group input:focus {
+            outline: none;
+            border-color: #64b5f6;
+            box-shadow: 0 0 0 4px rgba(100, 181, 246, 0.15);
+        }
+
+        .login-box .btn-primary {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #1565c0, #0d47a1);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-box .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(21, 101, 192, 0.4);
+        }
+
+        .login-box .btn-secondary {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            background: transparent;
+            color: #90caf9;
+            border: 2px solid #2a3f5f;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-box .btn-secondary:hover {
+            background: rgba(21, 101, 192, 0.15);
+            border-color: #64b5f6;
+        }
+
+        .login-box .error {
+            color: #ef5350;
+            text-align: center;
+            font-size: 13px;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+
+        .login-box .success {
+            color: #81c784;
+            text-align: center;
+            font-size: 13px;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+
+        .login-box .auth-switch {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #8888aa;
+        }
+
+        .login-box .auth-switch a {
+            color: #64b5f6;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-box .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        .login-box .divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 16px 0;
+            color: #666688;
+            font-size: 12px;
+        }
+
+        .login-box .divider::before,
+        .login-box .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #2a3f5f;
+        }
+
+        /* ===== HEADER ===== */
         header {
             background: linear-gradient(135deg, #1e3a5f, #0d47a1);
             padding: 15px 25px;
@@ -69,7 +249,7 @@
         .header-info {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
@@ -86,6 +266,30 @@
 
         .info-item strong {
             color: #64b5f6;
+        }
+
+        .user-info {
+            color: #e0e0e0;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 6px 14px 6px 6px;
+            border-radius: 30px;
+        }
+
+        .user-info .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #64b5f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+            color: #0d47a1;
         }
 
         .btn-header {
@@ -107,6 +311,27 @@
             transform: translateY(-2px);
         }
 
+        .btn-header.voltar {
+            background: rgba(255, 183, 77, 0.15);
+            border-color: #ffb74d;
+            color: #ffb74d;
+        }
+
+        .btn-header.voltar:hover {
+            background: rgba(255, 183, 77, 0.3);
+        }
+
+        .btn-header.sair {
+            background: rgba(198, 40, 40, 0.15);
+            border-color: #ef5350;
+            color: #ef9a9a;
+        }
+
+        .btn-header.sair:hover {
+            background: rgba(198, 40, 40, 0.3);
+        }
+
+        /* ===== TELAS ===== */
         .screen {
             display: none;
             animation: fadeIn 0.4s ease;
@@ -121,12 +346,17 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95) translateY(-20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
         .welcome-screen {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: calc(100vh - 80px);
+            min-height: calc(100vh - 90px);
             text-align: center;
             padding: 20px;
         }
@@ -175,6 +405,25 @@
         .btn-start:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 40px rgba(76, 175, 80, 0.6);
+        }
+
+        .empty-warning {
+            background: rgba(255, 183, 77, 0.15);
+            border: 2px solid #ffb74d;
+            border-radius: 12px;
+            padding: 20px 24px;
+            max-width: 500px;
+            margin-bottom: 20px;
+            color: #ffb74d;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .empty-warning strong {
+            color: white;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 16px;
         }
 
         .main-layout {
@@ -374,6 +623,28 @@
             font-size: 15px;
             font-weight: 800;
             color: #4CAF50;
+        }
+
+        .empty-products {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            color: #4a5f7f;
+        }
+
+        .empty-products .icon {
+            font-size: 60px;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        .empty-products p {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .empty-products strong {
+            color: #90caf9;
         }
 
         .cart-area {
@@ -628,11 +899,6 @@
             overflow-y: auto;
             border: 2px solid #2a3f5f;
             animation: modalIn 0.3s ease;
-        }
-
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.95) translateY(-20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .modal-header {
@@ -914,11 +1180,6 @@
             box-shadow: 0 5px 20px rgba(21, 101, 192, 0.4);
         }
 
-        .btn-primary:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-
         .btn-success {
             flex: 1;
             background: linear-gradient(135deg, #4CAF50, #2e7d32);
@@ -953,6 +1214,66 @@
             background: #3a4f6f;
         }
 
+        /* Admin - lista de produtos */
+        .admin-list {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 2px solid #2a3f5f;
+        }
+
+        .admin-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 8px;
+            border-bottom: 1px solid #1a2f4a;
+            font-size: 13px;
+        }
+
+        .admin-item:last-child {
+            border-bottom: none;
+        }
+
+        .admin-item .info {
+            flex: 1;
+        }
+
+        .admin-item .nome {
+            color: white;
+            font-weight: 600;
+        }
+
+        .admin-item .barcode {
+            color: #4a5f7f;
+            font-size: 11px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .admin-item .preco {
+            color: #4CAF50;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        .admin-item .del {
+            background: #c62828;
+            color: white;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .admin-item .del:hover {
+            background: #ef5350;
+        }
+
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -969,7 +1290,6 @@
             background: #3a4f6f;
         }
 
-        /* ===== INDICADOR DE LEITOR ===== */
         .reader-indicator {
             display: flex;
             align-items: center;
@@ -998,7 +1318,52 @@
 </head>
 <body>
 
-    <header>
+    <!-- ===== LOGIN / CADASTRO ===== -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-box" id="authBox">
+            <div class="logo-icon">
+                <div class="circle">F</div>
+            </div>
+            <h2 id="authTitle">Festval</h2>
+            <p class="sub" id="authSub">Sistema de Autoatendimento</p>
+
+            <div id="authForm">
+                <div class="form-group" id="nomeGrupo" style="display:none;">
+                    <label>Nome Completo</label>
+                    <input type="text" id="authNome" placeholder="Seu nome completo">
+                </div>
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" id="authEmail" placeholder="seu@email.com" autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="authSenha" placeholder="••••••" autocomplete="current-password">
+                </div>
+                <div class="form-group" id="senhaConfirmarGrupo" style="display:none;">
+                    <label>Confirmar Senha</label>
+                    <input type="password" id="authSenhaConfirmar" placeholder="••••••">
+                </div>
+
+                <div id="authError" class="error"></div>
+                <div id="authSuccess" class="success"></div>
+
+                <button onclick="authAction()" class="btn-primary" id="authBtn">Entrar</button>
+
+                <div class="divider">ou</div>
+
+                <button onclick="entrarConvidado()" class="btn-secondary">👤 Modo Convidado</button>
+
+                <div class="auth-switch">
+                    <span id="authSwitchText">Não tem uma conta?</span>
+                    <a id="authSwitchLink" onclick="switchAuthMode()">Criar conta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header id="mainHeader" style="display:none;">
         <div class="logo">
             <div class="logo-icon">F</div>
             <div class="logo-text">
@@ -1017,21 +1382,34 @@
                 <span class="dot"></span>
                 📷 Leitor ativo
             </div>
-            <button onclick="abrirAdmin()" class="btn-header">⚙️ Admin</button>
+            <div class="user-info">
+                <span class="avatar" id="userAvatar">U</span>
+                <span id="userName">Usuário</span>
+            </div>
+            <button onclick="window.location.href='index.html'" class="btn-header voltar">⬅ Voltar</button>
+            <button onclick="logout()" class="btn-header sair">🚪 Sair</button>
         </div>
     </header>
 
+    <!-- ===== TELA DE BOAS-VINDAS ===== -->
     <div id="screenWelcome" class="screen active">
         <div class="welcome-screen">
             <div class="icon">🛒</div>
             <h2>Bem-vindo ao Festval!</h2>
             <p>Escaneie seus produtos e pague de forma rápida e fácil.</p>
+
+            <div id="avisoSemProdutos" class="empty-warning" style="display:none;">
+                <strong>⚠️ Nenhum produto cadastrado!</strong>
+                Vá em <strong>⚙️ Admin</strong> para cadastrar seus produtos antes de iniciar a compra.
+            </div>
+
             <button class="btn-start" onclick="iniciarCompra()">
                 🚀 Iniciar Compra
             </button>
         </div>
     </div>
 
+    <!-- ===== TELA PRINCIPAL ===== -->
     <div id="screenMain" class="screen">
         <div class="main-layout">
             <div class="scan-area">
@@ -1083,6 +1461,7 @@
         </div>
     </div>
 
+    <!-- ===== MODAL PAGAMENTO ===== -->
     <div id="modalPagamento" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -1139,6 +1518,7 @@
         </div>
     </div>
 
+    <!-- ===== MODAL CUPOM ===== -->
     <div id="modalCupom" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -1155,6 +1535,7 @@
         </div>
     </div>
 
+    <!-- ===== MODAL ADMIN ===== -->
     <div id="modalAdmin" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -1162,14 +1543,25 @@
                 <span class="close" onclick="fecharModal('modalAdmin')">&times;</span>
             </div>
             <div class="modal-body">
-                <p style="color:#90caf9;margin-bottom:14px;font-size:14px;">Cadastre produtos para o autoatendimento:</p>
-                <input type="text" id="adminBarcode" placeholder="Código de barras (EAN)" style="width:100%;padding:12px;background:#0f172a;border:2px solid #2a3f5f;border-radius:8px;color:white;font-size:14px;margin-bottom:10px;">
-                <input type="text" id="adminNome" placeholder="Nome do produto" style="width:100%;padding:12px;background:#0f172a;border:2px solid #2a3f5f;border-radius:8px;color:white;font-size:14px;margin-bottom:10px;">
-                <input type="number" id="adminPreco" placeholder="Preço (R$)" step="0.01" min="0" style="width:100%;padding:12px;background:#0f172a;border:2px solid #2a3f5f;border-radius:8px;color:white;font-size:14px;margin-bottom:10px;">
-                <input type="text" id="adminEmoji" placeholder="Emoji (ex: 🍎)" maxlength="2" style="width:100%;padding:12px;background:#0f172a;border:2px solid #2a3f5f;border-radius:8px;color:white;font-size:14px;margin-bottom:16px;">
-                <div class="modal-actions">
+                <p style="color:#90caf9;margin-bottom:14px;font-size:14px;">📦 Cadastre e gerencie seus produtos:</p>
+
+                <div style="background:#0f172a;border-radius:10px;padding:14px;margin-bottom:16px;border:2px solid #2a3f5f;">
+                    <div style="font-size:12px;color:#90caf9;margin-bottom:10px;font-weight:600;">➕ NOVO PRODUTO</div>
+                    <input type="text" id="adminBarcode" placeholder="Código de barras (EAN)" style="width:100%;padding:12px;background:#1a2332;border:2px solid #2a3f5f;border-radius:8px;color:white;font-size:14px;margin-bottom:10px;">
+                    <input type="text" id="adminNome" placeholder="Nome do produto" style="width:100%;padding:12px;background:#1a2332;border:2px solid #2a3f5f;border-radius:8px;color:white;font-size:14px;margin-bottom:10px;">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+                        <input type="number" id="adminPreco" placeholder="Preço (R$)" step="0.01" min="0" style="padding:12px;background:#1a2332;border:2px solid #2a3f5f;border-radius:8px;color:white;font-size:14px;">
+                        <input type="text" id="adminEmoji" placeholder="Emoji 🍎" maxlength="2" style="padding:12px;background:#1a2332;border:2px solid #2a3f5f;border-radius:8px;color:white;font-size:14px;">
+                    </div>
+                    <button onclick="cadastrarProduto()" class="btn-primary" style="width:100%;">➕ Cadastrar Produto</button>
+                </div>
+
+                <div style="font-size:12px;color:#90caf9;margin-bottom:8px;font-weight:600;">📋 PRODUTOS CADASTRADOS (<span id="adminCount">0</span>)</div>
+                <div class="admin-list" id="adminList"></div>
+
+                <div class="modal-actions" style="margin-top:16px;">
                     <button onclick="fecharModal('modalAdmin')" class="btn-secondary">Fechar</button>
-                    <button onclick="cadastrarProduto()" class="btn-primary">➕ Cadastrar</button>
+                    <button onclick="limparTodosProdutos()" class="btn-secondary" style="background:#7a1f1f;color:#ef9a9a;">🗑️ Limpar Todos</button>
                 </div>
             </div>
         </div>
@@ -1177,70 +1569,294 @@
 
     <script>
         // =============================================
-        // FESTVAL SELF-CHECKOUT - COM DETECÇÃO AUTOMÁTICA
+        // FESTVAL SELF-CHECKOUT - COM SISTEMA DE CONTAS
         // =============================================
-
-        const PRODUTOS_PADRAO = [
-            { barcode: '7891000053508', nome: 'Arroz 5kg', preco: 24.90, emoji: '🍚' },
-            { barcode: '7891000244111', nome: 'Feijão 1kg', preco: 8.90, emoji: '🫘' },
-            { barcode: '7891000100103', nome: 'Açúcar 1kg', preco: 5.49, emoji: '🍬' },
-            { barcode: '7891000315507', nome: 'Café 500g', preco: 18.90, emoji: '☕' },
-            { barcode: '7891000055502', nome: 'Leite 1L', preco: 5.99, emoji: '🥛' },
-            { barcode: '7891000101100', nome: 'Pão de Forma', preco: 8.49, emoji: '🍞' },
-            { barcode: '7891000055500', nome: 'Ovos Dúzia', preco: 12.90, emoji: '🥚' },
-            { barcode: '7891000050010', nome: 'Macarrão 500g', preco: 4.99, emoji: '🍝' },
-            { barcode: '7891000050100', nome: 'Óleo de Soja 900ml', preco: 7.49, emoji: '🫒' },
-            { barcode: '7891000050200', nome: 'Sal 1kg', preco: 3.49, emoji: '🧂' },
-            { barcode: '7891000110001', nome: 'Banana (kg)', preco: 6.99, emoji: '🍌' },
-            { barcode: '7891000110002', nome: 'Maçã (kg)', preco: 8.99, emoji: '🍎' },
-            { barcode: '7891000110003', nome: 'Laranja (kg)', preco: 4.99, emoji: '🍊' },
-            { barcode: '7891000110004', nome: 'Tomate (kg)', preco: 7.99, emoji: '🍅' },
-            { barcode: '7891000110005', nome: 'Batata (kg)', preco: 5.49, emoji: '🥔' },
-            { barcode: '7891000110006', nome: 'Cebola (kg)', preco: 4.99, emoji: '🧅' },
-            { barcode: '7891000120001', nome: 'Frango Inteiro', preco: 22.90, emoji: '🍗' },
-            { barcode: '7891000120002', nome: 'Carne Moída (kg)', preco: 34.90, emoji: '🥩' },
-            { barcode: '7891000120003', nome: 'Linguiça (kg)', preco: 24.90, emoji: '🌭' },
-            { barcode: '7891000130001', nome: 'Refrigerante 2L', preco: 8.99, emoji: '🥤' },
-            { barcode: '7891000130002', nome: 'Água Mineral 1,5L', preco: 3.49, emoji: '💧' },
-            { barcode: '7891000130003', nome: 'Suco de Laranja 1L', preco: 9.90, emoji: '🧃' },
-            { barcode: '7891000130004', nome: 'Cerveja Lata', preco: 4.49, emoji: '🍺' },
-            { barcode: '7891000140001', nome: 'Sabão em Pó 1kg', preco: 14.90, emoji: '🧴' },
-            { barcode: '7891000140002', nome: 'Detergente 500ml', preco: 3.99, emoji: '🧼' },
-            { barcode: '7891000140003', nome: 'Desinfetante 1L', preco: 6.49, emoji: '🧽' },
-            { barcode: '7891000150001', nome: 'Papel Higiênico 12un', preco: 24.90, emoji: '🧻' },
-            { barcode: '7891000150002', nome: 'Creme Dental', preco: 5.99, emoji: '🪥' },
-            { barcode: '7891000150003', nome: 'Sabonete', preco: 2.99, emoji: '🧼' },
-            { barcode: '7891000160001', nome: 'Biscoito Recheado', preco: 4.49, emoji: '🍪' },
-            { barcode: '7891000160002', nome: 'Chocolate Barra', preco: 6.99, emoji: '🍫' },
-            { barcode: '7891000160003', nome: 'Sorvete 2L', preco: 18.90, emoji: '🍦' }
-        ];
 
         let carrinho = [];
         let produtos = [];
         let metodoPagamento = null;
         let ultimaCompra = null;
+        let usuarioAtual = null;
+        let modoAuth = 'login';
 
         // ===== DETECÇÃO AUTOMÁTICA DE LEITOR =====
         let barcodeBuffer = '';
         let lastKeyTime = 0;
         const BARCODE_TIMEOUT = 50;
 
+        // ===== INICIALIZAÇÃO =====
         document.addEventListener('DOMContentLoaded', function() {
-            carregarProdutos();
-            renderizarProdutosRapidos();
             atualizarHora();
             setInterval(atualizarHora, 1000);
-            atualizarCarrinho();
             iniciarDeteccaoLeitor();
+            verificarSessao();
         });
 
-        // ===== DETECÇÃO AUTOMÁTICA DO LEITOR DE CÓDIGO DE BARRAS =====
+        // ===== VERIFICAR SESSÃO =====
+        function verificarSessao() {
+            const sessao = localStorage.getItem('festvalSessao');
+            if (sessao) {
+                try {
+                    const dados = JSON.parse(sessao);
+                    if (dados.email) {
+                        usuarioAtual = dados;
+                        entrarNoSistema();
+                        return;
+                    }
+                } catch (e) {}
+            }
+            document.getElementById('loginOverlay').classList.remove('hidden');
+        }
+
+        // ===== AUTENTICAÇÃO =====
+        function switchAuthMode() {
+            const isLogin = modoAuth === 'login';
+            modoAuth = isLogin ? 'register' : 'login';
+
+            const title = document.getElementById('authTitle');
+            const sub = document.getElementById('authSub');
+            const btn = document.getElementById('authBtn');
+            const switchText = document.getElementById('authSwitchText');
+            const switchLink = document.getElementById('authSwitchLink');
+            const nomeGrupo = document.getElementById('nomeGrupo');
+            const senhaConfirmar = document.getElementById('senhaConfirmarGrupo');
+
+            if (modoAuth === 'register') {
+                title.textContent = '📝 Criar Conta';
+                sub.textContent = 'Crie sua conta para começar';
+                btn.textContent = 'Criar Conta';
+                switchText.textContent = 'Já tem uma conta?';
+                switchLink.textContent = 'Fazer login';
+                nomeGrupo.style.display = 'block';
+                senhaConfirmar.style.display = 'block';
+            } else {
+                title.textContent = 'Festval';
+                sub.textContent = 'Sistema de Autoatendimento';
+                btn.textContent = 'Entrar';
+                switchText.textContent = 'Não tem uma conta?';
+                switchLink.textContent = 'Criar conta';
+                nomeGrupo.style.display = 'none';
+                senhaConfirmar.style.display = 'none';
+            }
+
+            document.getElementById('authError').textContent = '';
+            document.getElementById('authSuccess').textContent = '';
+        }
+
+        function authAction() {
+            const email = document.getElementById('authEmail').value.trim().toLowerCase();
+            const senha = document.getElementById('authSenha').value;
+            const error = document.getElementById('authError');
+            const success = document.getElementById('authSuccess');
+
+            error.textContent = '';
+            success.textContent = '';
+
+            if (!email || !senha) {
+                error.textContent = 'Preencha todos os campos.';
+                return;
+            }
+
+            if (modoAuth === 'register') {
+                const nome = document.getElementById('authNome').value.trim();
+                const confirmar = document.getElementById('authSenhaConfirmar').value;
+
+                if (!nome) {
+                    error.textContent = 'Digite seu nome.';
+                    return;
+                }
+                if (senha !== confirmar) {
+                    error.textContent = 'As senhas não coincidem.';
+                    return;
+                }
+                if (senha.length < 4) {
+                    error.textContent = 'A senha deve ter no mínimo 4 caracteres.';
+                    return;
+                }
+
+                const usuarios = JSON.parse(localStorage.getItem('festvalUsuarios') || '{}');
+                if (usuarios[email]) {
+                    error.textContent = 'Este e-mail já está cadastrado.';
+                    return;
+                }
+
+                usuarios[email] = {
+                    nome: nome,
+                    senha: senha,
+                    produtos: [],
+                    criadoEm: new Date().toISOString()
+                };
+                localStorage.setItem('festvalUsuarios', JSON.stringify(usuarios));
+
+                success.textContent = '✅ Conta criada! Faça login.';
+                modoAuth = 'login';
+                switchAuthMode();
+
+                document.getElementById('authNome').value = '';
+                document.getElementById('authSenhaConfirmar').value = '';
+                document.getElementById('authSenha').value = '';
+
+            } else {
+                const usuarios = JSON.parse(localStorage.getItem('festvalUsuarios') || '{}');
+                const user = usuarios[email];
+
+                if (!user) {
+                    error.textContent = 'E-mail não encontrado. Crie uma conta.';
+                    return;
+                }
+
+                if (user.senha !== senha) {
+                    error.textContent = 'Senha incorreta.';
+                    return;
+                }
+
+                usuarioAtual = { email: email, nome: user.nome };
+                localStorage.setItem('festvalSessao', JSON.stringify(usuarioAtual));
+                entrarNoSistema();
+            }
+        }
+
+        // Enter para submeter login
+        document.getElementById('authSenha').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') authAction();
+        });
+        document.getElementById('authSenhaConfirmar').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') authAction();
+        });
+
+        function entrarConvidado() {
+            usuarioAtual = { email: 'convidado@festval', nome: 'Convidado' };
+            localStorage.setItem('festvalSessao', JSON.stringify(usuarioAtual));
+            entrarNoSistema();
+        }
+
+        function entrarNoSistema() {
+            document.getElementById('loginOverlay').classList.add('hidden');
+            document.getElementById('mainHeader').style.display = 'flex';
+
+            // Atualiza dados do usuário
+            document.getElementById('userName').textContent = usuarioAtual.nome || 'Usuário';
+            document.getElementById('userAvatar').textContent = (usuarioAtual.nome || 'U')[0].toUpperCase();
+
+            carregarProdutos();
+            renderizarProdutosRapidos();
+            atualizarCarrinho();
+            verificarProdutosVazios();
+
+            document.getElementById('screenWelcome').classList.add('active');
+            document.getElementById('screenMain').classList.remove('active');
+        }
+
+        function logout() {
+            if (!confirm('Deseja sair da sua conta?')) return;
+            localStorage.removeItem('festvalSessao');
+            usuarioAtual = null;
+            carrinho = [];
+            produtos = [];
+
+            document.getElementById('loginOverlay').classList.remove('hidden');
+            document.getElementById('mainHeader').style.display = 'none';
+            document.getElementById('screenWelcome').classList.remove('active');
+            document.getElementById('screenMain').classList.remove('active');
+
+            document.getElementById('authSenha').value = '';
+            document.getElementById('authError').textContent = '';
+            document.getElementById('authSuccess').textContent = '';
+        }
+
+        // ===== CARREGAR PRODUTOS DO USUÁRIO =====
+        function carregarProdutos() {
+            if (!usuarioAtual) {
+                produtos = [];
+                return;
+            }
+
+            if (usuarioAtual.email === 'convidado@festval') {
+                // Convidado usa localStorage separado
+                try {
+                    const saved = localStorage.getItem('festvalProdutos_convidado');
+                    produtos = saved ? JSON.parse(saved) : [];
+                } catch (e) {
+                    produtos = [];
+                }
+                return;
+            }
+
+            try {
+                const usuarios = JSON.parse(localStorage.getItem('festvalUsuarios') || '{}');
+                if (usuarios[usuarioAtual.email]) {
+                    produtos = usuarios[usuarioAtual.email].produtos || [];
+                } else {
+                    produtos = [];
+                }
+            } catch (e) {
+                produtos = [];
+            }
+        }
+
+        function salvarProdutos() {
+            if (!usuarioAtual) return;
+
+            if (usuarioAtual.email === 'convidado@festval') {
+                try {
+                    localStorage.setItem('festvalProdutos_convidado', JSON.stringify(produtos));
+                } catch (e) {}
+                return;
+            }
+
+            try {
+                const usuarios = JSON.parse(localStorage.getItem('festvalUsuarios') || '{}');
+                if (usuarios[usuarioAtual.email]) {
+                    usuarios[usuarioAtual.email].produtos = produtos;
+                    localStorage.setItem('festvalUsuarios', JSON.stringify(usuarios));
+                }
+            } catch (e) {}
+        }
+
+        // ===== HORA ATUAL =====
+        function atualizarHora() {
+            const agora = new Date();
+            const hora = String(agora.getHours()).padStart(2, '0') + ':' + String(agora.getMinutes()).padStart(2, '0');
+            const data = agora.toLocaleDateString('pt-BR');
+            const hEl = document.getElementById('horaAtual');
+            const dEl = document.getElementById('dataAtual');
+            if (hEl) hEl.textContent = hora;
+            if (dEl) dEl.textContent = data;
+        }
+
+        // ===== INICIAR COMPRA =====
+        function iniciarCompra() {
+            if (produtos.length === 0) {
+                mostrarFeedback('⚠️ Cadastre produtos primeiro em ⚙️ Admin', 'error');
+                return;
+            }
+            document.getElementById('screenWelcome').classList.remove('active');
+            document.getElementById('screenMain').classList.add('active');
+            setTimeout(() => document.getElementById('barcodeInput').focus(), 300);
+        }
+
+        function verificarProdutosVazios() {
+            const aviso = document.getElementById('avisoSemProdutos');
+            if (aviso) {
+                if (produtos.length === 0) {
+                    aviso.style.display = 'block';
+                } else {
+                    aviso.style.display = 'none';
+                }
+            }
+        }
+
+        // ===== DETECÇÃO AUTOMÁTICA DE LEITOR =====
         function iniciarDeteccaoLeitor() {
             document.addEventListener('keydown', function(e) {
                 const activeElement = document.activeElement;
-                // Ignora se estiver digitando em um campo que não seja o de barcode
-                if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') 
+                if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')
                     && activeElement.id !== 'barcodeInput') {
+                    return;
+                }
+
+                // Verifica se está na tela principal
+                if (!document.getElementById('screenMain').classList.contains('active')) {
                     return;
                 }
 
@@ -1248,19 +1864,14 @@
                 const diff = now - lastKeyTime;
                 lastKeyTime = now;
 
-                // Teclas digitadas muito rápido = leitor de código de barras
                 if (diff < BARCODE_TIMEOUT && e.key.length === 1) {
                     barcodeBuffer += e.key;
                     e.preventDefault();
-                } 
-                // Enter = fim da leitura
-                else if (e.key === 'Enter' && barcodeBuffer.length > 0) {
+                } else if (e.key === 'Enter' && barcodeBuffer.length > 0) {
                     e.preventDefault();
                     processarCodigoBarras(barcodeBuffer);
                     barcodeBuffer = '';
-                }
-                // Se demorou muito, reinicia o buffer
-                else if (diff >= BARCODE_TIMEOUT && e.key.length === 1) {
+                } else if (diff >= BARCODE_TIMEOUT && e.key.length === 1) {
                     barcodeBuffer = e.key;
                 }
             });
@@ -1270,11 +1881,9 @@
             const codigoLimpo = codigo.trim();
             if (!codigoLimpo) return;
 
-            // Atualiza o campo visualmente
             const input = document.getElementById('barcodeInput');
             if (input) {
                 input.value = codigoLimpo;
-                // Efeito visual de "scan"
                 const scanCard = document.getElementById('scanCard');
                 if (scanCard) {
                     scanCard.classList.add('scanning');
@@ -1289,44 +1898,22 @@
             }, 1500);
         }
 
-        // ===== CARREGAR PRODUTOS =====
-        function carregarProdutos() {
-            try {
-                const saved = localStorage.getItem('festvalProdutos');
-                if (saved) {
-                    produtos = JSON.parse(saved);
-                    if (produtos.length === 0) produtos = [...PRODUTOS_PADRAO];
-                } else {
-                    produtos = [...PRODUTOS_PADRAO];
-                    localStorage.setItem('festvalProdutos', JSON.stringify(produtos));
-                }
-            } catch (e) {
-                produtos = [...PRODUTOS_PADRAO];
-            }
-        }
-
-        function salvarProdutos() {
-            try {
-                localStorage.setItem('festvalProdutos', JSON.stringify(produtos));
-            } catch (e) {}
-        }
-
-        function atualizarHora() {
-            const agora = new Date();
-            const hora = String(agora.getHours()).padStart(2, '0') + ':' + String(agora.getMinutes()).padStart(2, '0');
-            const data = agora.toLocaleDateString('pt-BR');
-            document.getElementById('horaAtual').textContent = hora;
-            document.getElementById('dataAtual').textContent = data;
-        }
-
-        function iniciarCompra() {
-            document.getElementById('screenWelcome').classList.remove('active');
-            document.getElementById('screenMain').classList.add('active');
-            setTimeout(() => document.getElementById('barcodeInput').focus(), 300);
-        }
-
+        // ===== PRODUTOS RÁPIDOS =====
         function renderizarProdutosRapidos() {
             const grid = document.getElementById('productsGrid');
+            if (!grid) return;
+
+            if (produtos.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-products">
+                        <div class="icon">📦</div>
+                        <p>Nenhum produto cadastrado ainda.</p>
+                        <p>Vá em <strong>⚙️ Admin</strong> para adicionar produtos.</p>
+                    </div>
+                `;
+                return;
+            }
+
             const lista = produtos.slice(0, 20);
             grid.innerHTML = lista.map(p => `
                 <button class="product-btn" onclick="adicionarPorBarcode('${p.barcode}')">
@@ -1337,8 +1924,10 @@
             `).join('');
         }
 
+        // ===== FEEDBACK =====
         function mostrarFeedback(msg, tipo) {
             const el = document.getElementById('feedbackMsg');
+            if (!el) return;
             el.textContent = msg;
             el.className = 'feedback-msg show ' + tipo;
             setTimeout(() => el.classList.remove('show'), 3000);
@@ -1357,7 +1946,6 @@
             const produto = produtos.find(p => p.barcode === barcode);
             if (!produto) {
                 mostrarFeedback(`❌ Produto não encontrado: ${barcode}`, 'error');
-                try { new Audio('data:audio/wav;base64,U3R1ZmZUdXJyAAAAAAIAAAADBAgGBwAAAAA=').play(); } catch(e) {}
                 return;
             }
 
@@ -1376,15 +1964,13 @@
 
             mostrarFeedback(`✅ ${produto.emoji} ${produto.nome} adicionado!`, 'success');
             atualizarCarrinho();
-            renderizarProdutosRapidos();
         }
 
         document.getElementById('barcodeInput').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                buscarPorCodigo();
-            }
+            if (e.key === 'Enter') buscarPorCodigo();
         });
 
+        // ===== CARRINHO =====
         function atualizarCarrinho() {
             const container = document.getElementById('cartItems');
             const count = carrinho.reduce((acc, i) => acc + i.qtd, 0);
@@ -1427,9 +2013,7 @@
         function alterarQtd(idx, delta) {
             if (!carrinho[idx]) return;
             carrinho[idx].qtd += delta;
-            if (carrinho[idx].qtd <= 0) {
-                carrinho.splice(idx, 1);
-            }
+            if (carrinho[idx].qtd <= 0) carrinho.splice(idx, 1);
             atualizarCarrinho();
         }
 
@@ -1445,6 +2029,7 @@
             atualizarCarrinho();
         }
 
+        // ===== PAGAMENTO =====
         function abrirPagamento() {
             if (carrinho.length === 0) return;
             const total = carrinho.reduce((acc, i) => acc + (i.preco * i.qtd), 0);
@@ -1492,19 +2077,14 @@
             document.getElementById('trocoValor').textContent = troco >= 0
                 ? `R$ ${troco.toFixed(2).replace('.', ',')}`
                 : `Falta R$ ${Math.abs(troco).toFixed(2).replace('.', ',')}`;
-
             document.getElementById('btnConfirmar').disabled = !(recebido >= total);
         }
 
         function confirmarPagamento() {
             const total = carrinho.reduce((acc, i) => acc + (i.preco * i.qtd), 0);
-
             if (metodoPagamento === 'dinheiro') {
                 const recebido = parseFloat(document.getElementById('valorRecebido').value) || 0;
-                if (recebido < total) {
-                    alert('❌ Valor insuficiente!');
-                    return;
-                }
+                if (recebido < total) { alert('❌ Valor insuficiente!'); return; }
             }
 
             ultimaCompra = {
@@ -1531,7 +2111,7 @@
                     <h2>🛒 FESTVAL</h2>
                     <p>CNPJ: 00.000.000/0001-00</p>
                     <p>Av. Principal, 1000 - Curitiba/PR</p>
-                    <p>Autoatendimento</p>
+                    <p>Operador: ${usuarioAtual ? usuarioAtual.nome : 'N/A'}</p>
                 </div>
                 <div style="font-size:11px;margin-bottom:8px;">
                     <div>Data: ${data} às ${hora}</div>
@@ -1544,9 +2124,6 @@
                             <span>${i.qtd}x ${i.nome}</span>
                             <span>R$ ${(i.preco * i.qtd).toFixed(2).replace('.', ',')}</span>
                         </div>
-                        <div style="font-size:10px;color:#666;padding-left:8px;">
-                            R$ ${i.preco.toFixed(2).replace('.', ',')} un
-                        </div>
                     `).join('')}
                 </div>
                 <div class="total-line">
@@ -1555,12 +2132,6 @@
                 </div>
                 <div style="margin-top:8px;font-size:11px;">
                     <div>Forma de pagamento: <strong>${metodos[ultimaCompra.metodo]}</strong></div>
-                    ${ultimaCompra.metodo === 'dinheiro' ? (() => {
-                        const rec = parseFloat(document.getElementById('valorRecebido').value) || 0;
-                        const troco = rec - ultimaCompra.total;
-                        return `<div>Valor recebido: R$ ${rec.toFixed(2).replace('.', ',')}</div>
-                                <div>Troco: R$ ${troco.toFixed(2).replace('.', ',')}</div>`;
-                    })() : ''}
                 </div>
                 <div class="footer">
                     <p>Obrigado pela preferência!</p>
@@ -1615,8 +2186,31 @@
             });
         });
 
+        // ===== ADMIN =====
         function abrirAdmin() {
+            renderizarAdminList();
             document.getElementById('modalAdmin').classList.add('show');
+        }
+
+        function renderizarAdminList() {
+            const lista = document.getElementById('adminList');
+            document.getElementById('adminCount').textContent = produtos.length;
+
+            if (produtos.length === 0) {
+                lista.innerHTML = '<p style="text-align:center;color:#4a5f7f;padding:20px;font-size:13px;">Nenhum produto cadastrado</p>';
+                return;
+            }
+
+            lista.innerHTML = produtos.map((p, idx) => `
+                <div class="admin-item">
+                    <div class="info">
+                        <div class="nome">${p.emoji || '📦'} ${p.nome}</div>
+                        <div class="barcode">${p.barcode}</div>
+                    </div>
+                    <span class="preco">R$ ${p.preco.toFixed(2).replace('.', ',')}</span>
+                    <button class="del" onclick="excluirProduto(${idx})">×</button>
+                </div>
+            `).join('');
         }
 
         function cadastrarProduto() {
@@ -1638,28 +2232,46 @@
             produtos.push({ barcode, nome, preco, emoji });
             salvarProdutos();
             renderizarProdutosRapidos();
+            renderizarAdminList();
+            verificarProdutosVazios();
 
             document.getElementById('adminBarcode').value = '';
             document.getElementById('adminNome').value = '';
             document.getElementById('adminPreco').value = '';
             document.getElementById('adminEmoji').value = '';
-
-            alert('✅ Produto cadastrado com sucesso!');
         }
 
-        // Mantém o foco no campo de barcode quando a tela principal está ativa
+        function excluirProduto(idx) {
+            if (!confirm('Excluir este produto?')) return;
+            produtos.splice(idx, 1);
+            salvarProdutos();
+            renderizarProdutosRapidos();
+            renderizarAdminList();
+            verificarProdutosVazios();
+        }
+
+        function limparTodosProdutos() {
+            if (produtos.length === 0) return;
+            if (!confirm('⚠️ Tem certeza que deseja APAGAR TODOS os produtos?')) return;
+            produtos = [];
+            salvarProdutos();
+            renderizarProdutosRapidos();
+            renderizarAdminList();
+            verificarProdutosVazios();
+        }
+
+        // Foco no barcode
         document.addEventListener('click', function() {
             if (document.getElementById('screenMain').classList.contains('active')) {
                 const modalAberto = document.querySelector('.modal-overlay.show');
                 if (!modalAberto) {
-                    document.getElementById('barcodeInput').focus();
+                    const input = document.getElementById('barcodeInput');
+                    if (input) input.focus();
                 }
             }
         });
 
-        console.log('🛒 Festval Self-Checkout com detecção automática carregado!');
-        console.log(`📦 ${produtos.length} produtos cadastrados`);
-        console.log('📷 Leitor de código de barras ativo - escaneie um produto!');
+        console.log('🛒 Festval com sistema de contas carregado!');
     </script>
 
 </body>
