@@ -331,6 +331,16 @@
             background: rgba(198, 40, 40, 0.3);
         }
 
+        .btn-header.produto {
+            background: rgba(76, 175, 80, 0.15);
+            border-color: #4CAF50;
+            color: #81c784;
+        }
+
+        .btn-header.produto:hover {
+            background: rgba(76, 175, 80, 0.3);
+        }
+
         /* ===== TELAS ===== */
         .screen {
             display: none;
@@ -407,23 +417,26 @@
             box-shadow: 0 12px 40px rgba(76, 175, 80, 0.6);
         }
 
-        .empty-warning {
-            background: rgba(255, 183, 77, 0.15);
-            border: 2px solid #ffb74d;
-            border-radius: 12px;
-            padding: 20px 24px;
-            max-width: 500px;
-            margin-bottom: 20px;
-            color: #ffb74d;
-            font-size: 14px;
-            text-align: center;
+        .btn-add-product {
+            background: linear-gradient(135deg, #1565c0, #0d47a1);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(21, 101, 192, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 16px;
         }
 
-        .empty-warning strong {
-            color: white;
-            display: block;
-            margin-bottom: 6px;
-            font-size: 16px;
+        .btn-add-product:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(21, 101, 192, 0.5);
         }
 
         .main-layout {
@@ -640,11 +653,24 @@
 
         .empty-products p {
             font-size: 14px;
-            margin-bottom: 6px;
+            margin-bottom: 16px;
         }
 
-        .empty-products strong {
-            color: #90caf9;
+        .empty-products button {
+            background: linear-gradient(135deg, #1565c0, #0d47a1);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .empty-products button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(21, 101, 192, 0.4);
         }
 
         .cart-area {
@@ -1214,7 +1240,6 @@
             background: #3a4f6f;
         }
 
-        /* Admin - lista de produtos */
         .admin-list {
             max-height: 200px;
             overflow-y: auto;
@@ -1386,6 +1411,7 @@
                 <span class="avatar" id="userAvatar">U</span>
                 <span id="userName">Usuário</span>
             </div>
+            <button onclick="abrirAdmin()" class="btn-header produto">➕ Adicionar Produto</button>
             <button onclick="window.location.href='index.html'" class="btn-header voltar">⬅ Voltar</button>
             <button onclick="logout()" class="btn-header sair">🚪 Sair</button>
         </div>
@@ -1398,13 +1424,12 @@
             <h2>Bem-vindo ao Festval!</h2>
             <p>Escaneie seus produtos e pague de forma rápida e fácil.</p>
 
-            <div id="avisoSemProdutos" class="empty-warning" style="display:none;">
-                <strong>⚠️ Nenhum produto cadastrado!</strong>
-                Vá em <strong>⚙️ Admin</strong> para cadastrar seus produtos antes de iniciar a compra.
-            </div>
-
             <button class="btn-start" onclick="iniciarCompra()">
                 🚀 Iniciar Compra
+            </button>
+
+            <button class="btn-add-product" onclick="abrirAdmin()">
+                ➕ Adicionar Produto
             </button>
         </div>
     </div>
@@ -1535,11 +1560,11 @@
         </div>
     </div>
 
-    <!-- ===== MODAL ADMIN ===== -->
+    <!-- ===== MODAL ADICIONAR PRODUTO ===== -->
     <div id="modalAdmin" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>⚙️ Painel Admin</h2>
+                <h2>➕ Adicionar Produto</h2>
                 <span class="close" onclick="fecharModal('modalAdmin')">&times;</span>
             </div>
             <div class="modal-body">
@@ -1569,7 +1594,7 @@
 
     <script>
         // =============================================
-        // FESTVAL SELF-CHECKOUT - COM SISTEMA DE CONTAS
+        // FESTVAL SELF-CHECKOUT - VERSÃO FINAL
         // =============================================
 
         let carrinho = [];
@@ -1579,7 +1604,6 @@
         let usuarioAtual = null;
         let modoAuth = 'login';
 
-        // ===== DETECÇÃO AUTOMÁTICA DE LEITOR =====
         let barcodeBuffer = '';
         let lastKeyTime = 0;
         const BARCODE_TIMEOUT = 50;
@@ -1716,7 +1740,6 @@
             }
         }
 
-        // Enter para submeter login
         document.getElementById('authSenha').addEventListener('keydown', function(e) {
             if (e.key === 'Enter') authAction();
         });
@@ -1734,14 +1757,12 @@
             document.getElementById('loginOverlay').classList.add('hidden');
             document.getElementById('mainHeader').style.display = 'flex';
 
-            // Atualiza dados do usuário
             document.getElementById('userName').textContent = usuarioAtual.nome || 'Usuário';
             document.getElementById('userAvatar').textContent = (usuarioAtual.nome || 'U')[0].toUpperCase();
 
             carregarProdutos();
             renderizarProdutosRapidos();
             atualizarCarrinho();
-            verificarProdutosVazios();
 
             document.getElementById('screenWelcome').classList.add('active');
             document.getElementById('screenMain').classList.remove('active');
@@ -1764,21 +1785,15 @@
             document.getElementById('authSuccess').textContent = '';
         }
 
-        // ===== CARREGAR PRODUTOS DO USUÁRIO =====
+        // ===== PRODUTOS =====
         function carregarProdutos() {
-            if (!usuarioAtual) {
-                produtos = [];
-                return;
-            }
+            if (!usuarioAtual) { produtos = []; return; }
 
             if (usuarioAtual.email === 'convidado@festval') {
-                // Convidado usa localStorage separado
                 try {
                     const saved = localStorage.getItem('festvalProdutos_convidado');
                     produtos = saved ? JSON.parse(saved) : [];
-                } catch (e) {
-                    produtos = [];
-                }
+                } catch (e) { produtos = []; }
                 return;
             }
 
@@ -1789,9 +1804,7 @@
                 } else {
                     produtos = [];
                 }
-            } catch (e) {
-                produtos = [];
-            }
+            } catch (e) { produtos = []; }
         }
 
         function salvarProdutos() {
@@ -1813,7 +1826,7 @@
             } catch (e) {}
         }
 
-        // ===== HORA ATUAL =====
+        // ===== HORA =====
         function atualizarHora() {
             const agora = new Date();
             const hora = String(agora.getHours()).padStart(2, '0') + ':' + String(agora.getMinutes()).padStart(2, '0');
@@ -1826,24 +1839,9 @@
 
         // ===== INICIAR COMPRA =====
         function iniciarCompra() {
-            if (produtos.length === 0) {
-                mostrarFeedback('⚠️ Cadastre produtos primeiro em ⚙️ Admin', 'error');
-                return;
-            }
             document.getElementById('screenWelcome').classList.remove('active');
             document.getElementById('screenMain').classList.add('active');
             setTimeout(() => document.getElementById('barcodeInput').focus(), 300);
-        }
-
-        function verificarProdutosVazios() {
-            const aviso = document.getElementById('avisoSemProdutos');
-            if (aviso) {
-                if (produtos.length === 0) {
-                    aviso.style.display = 'block';
-                } else {
-                    aviso.style.display = 'none';
-                }
-            }
         }
 
         // ===== DETECÇÃO AUTOMÁTICA DE LEITOR =====
@@ -1855,7 +1853,6 @@
                     return;
                 }
 
-                // Verifica se está na tela principal
                 if (!document.getElementById('screenMain').classList.contains('active')) {
                     return;
                 }
@@ -1908,7 +1905,7 @@
                     <div class="empty-products">
                         <div class="icon">📦</div>
                         <p>Nenhum produto cadastrado ainda.</p>
-                        <p>Vá em <strong>⚙️ Admin</strong> para adicionar produtos.</p>
+                        <button onclick="abrirAdmin()">➕ Adicionar Primeiro Produto</button>
                     </div>
                 `;
                 return;
@@ -2186,7 +2183,7 @@
             });
         });
 
-        // ===== ADMIN =====
+        // ===== PRODUTOS =====
         function abrirAdmin() {
             renderizarAdminList();
             document.getElementById('modalAdmin').classList.add('show');
@@ -2233,7 +2230,6 @@
             salvarProdutos();
             renderizarProdutosRapidos();
             renderizarAdminList();
-            verificarProdutosVazios();
 
             document.getElementById('adminBarcode').value = '';
             document.getElementById('adminNome').value = '';
@@ -2247,7 +2243,6 @@
             salvarProdutos();
             renderizarProdutosRapidos();
             renderizarAdminList();
-            verificarProdutosVazios();
         }
 
         function limparTodosProdutos() {
@@ -2257,7 +2252,6 @@
             salvarProdutos();
             renderizarProdutosRapidos();
             renderizarAdminList();
-            verificarProdutosVazios();
         }
 
         // Foco no barcode
@@ -2271,7 +2265,7 @@
             }
         });
 
-        console.log('🛒 Festval com sistema de contas carregado!');
+        console.log('🛒 Festval carregado!');
     </script>
 
 </body>
